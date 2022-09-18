@@ -14,10 +14,10 @@ services:
     networks:
       - wordpress_net
     environment:
-      MYSQL_ROOT_PASSWORD: rootpwd
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpresspwd
-      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PWD}
+      MYSQL_USER: ${DATABASE_USER_NAME}
+      MYSQL_PASSWORD: ${DATABASE_USER_PWD}
+      MYSQL_DATABASE: ${DATABASE_DB_NAME}
     volumes:
       - mysql:/var/lib/mysql
   
@@ -31,9 +31,9 @@ services:
       - wp-db
     environment: 
       WORDPRESS_DB_HOST: wp-db
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpresspwd
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER:  ${DATABASE_USER_NAME}
+      WORDPRESS_DB_PASSWORD: ${DATABASE_USER_PWD}
+      WORDPRESS_DB_NAME: ${DATABASE_DB_NAME}
     volumes:
       - wordpress:/var/www/html
   
@@ -48,8 +48,8 @@ services:
     environment:
       PMA_HOST: wp-db
       PMA_PORT: 3306
-      PMA_USER: wordpress
-      PMA_PASSWORD: wordpresspwd
+      PMA_USER: ${DATABASE_USER_NAME}
+      PMA_PASSWORD: ${DATABASE_USER_PWD}
 
 
 
